@@ -19,7 +19,12 @@ import android.view.MenuItem;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
+
+    DBHelper dbHelper;
+    ArrayList<Set> sets;
 
     DrawerLayout drawerLayout;
     NavigationView navigationView;
@@ -34,12 +39,19 @@ public class MainActivity extends AppCompatActivity {
     MenuItem prevMenuItem;
     NestedScrollView nestedScrollView;
 
+
     android.support.v4.app.Fragment[] frags=new android.support.v4.app.Fragment[3];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        dbHelper=new DBHelper(this);
+        sets=dbHelper.getAllSets();
+
+
+
 
         drawerLayout=findViewById(R.id.layout_drawer);
         navigationView=findViewById(R.id.navigation_view);
