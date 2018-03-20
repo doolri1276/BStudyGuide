@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/page1"
@@ -15,24 +16,26 @@
             android:orientation="vertical"
             android:paddingRight="16dp"
             android:paddingLeft="16dp">
+
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:paddingRight="40dp"
-                android:paddingLeft="40dp">
+                android:paddingRight="24dp"
+                android:paddingLeft="24dp">
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:gravity="center_horizontal"
                     android:layout_weight="1">
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:padding="10dp"
-                        android:src="@drawable/ic_folder_white_24px"
-                        android:background="@drawable/ic_plain_circle_deepskyblue_24px"
+                    <ToggleButton
+                        android:layout_width="56dp"
+                        android:layout_height="56dp"
+                        android:background="@drawable/sel_folder_all"
+                        android:textOn=""
+                        android:textOff=""
                         />
 
                     <TextView
@@ -49,12 +52,12 @@
                     android:orientation="vertical"
                     android:gravity="center_horizontal"
                     android:layout_weight="1">
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:padding="10dp"
-                        android:src="@drawable/ic_access_time_white_24px"
-                        android:background="@drawable/ic_plain_circle_deepskyblue_24px"
+                    <ToggleButton
+                        android:layout_width="56dp"
+                        android:layout_height="56dp"
+                        android:textOff=""
+                        android:textOn=""
+                        android:background="@drawable/sel_time_abc"
                         />
 
                     <TextView
@@ -71,12 +74,12 @@
                     android:orientation="vertical"
                     android:gravity="center_horizontal"
                     android:layout_weight="1">
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:padding="10dp"
-                        android:src="@drawable/ic_star_lightyellow_24px"
-                        android:background="@drawable/ic_plain_circle_deepskyblue_24px"
+                    <ToggleButton
+                        android:layout_width="56dp"
+                        android:layout_height="56dp"
+                        android:background="@drawable/sel_star_starselected"
+                        android:textOn=""
+                        android:textOff=""
                         />
 
                     <TextView
@@ -146,4 +149,4 @@
 
 
 
-</ScrollView>
+</android.support.v4.widget.NestedScrollView>

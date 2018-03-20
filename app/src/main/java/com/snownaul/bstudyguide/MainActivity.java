@@ -67,8 +67,8 @@ public class MainActivity extends AppCompatActivity {
         navigationView.setItemIconTintList(null);
 
 
-        nestedScrollView=findViewById(R.id.nestedscrolllview);
-        nestedScrollView.setFillViewport(true);
+//        nestedScrollView=findViewById(R.id.nestedscrolllview);
+//        nestedScrollView.setFillViewport(true);
 
         pager=findViewById(R.id.pager);
         fragAdapter=new FragAdapter(getSupportFragmentManager());
