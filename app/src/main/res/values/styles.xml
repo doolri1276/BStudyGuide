@@ -17,12 +17,20 @@
 
     <style name="AppTheme.AppBar">
         <item name="titleTextColor">@color/colorWhite</item>
+        <item name="android:colorBackground">@color/colorDeepSkyBlue</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textColorPrimary">@color/colorWhite</item>
+
+        <item name="colorControlNormal">@color/colorWhite</item>
+
+
     </style>
 
     <style name="CollapsedAppBar" parent="@android:style/TextAppearance.Medium">
         <item name="android:textSize">24sp</item>
         <item name="android:textColor">@color/colorWhite</item>
         <item name="android:textStyle">normal</item>
+        <item name="colorControlNormal">@color/colorWhite</item>
     </style>
 
 

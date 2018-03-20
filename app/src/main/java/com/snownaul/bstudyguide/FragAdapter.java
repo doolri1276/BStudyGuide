@@ -1,5 +1,6 @@
 package com.snownaul.bstudyguide;
 
+import android.support.design.internal.BottomNavigationItemView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -11,6 +12,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 public class FragAdapter extends FragmentPagerAdapter {
 
     Fragment[] frags=new Fragment[3];
+
 
     public FragAdapter(FragmentManager fm) {
         super(fm);

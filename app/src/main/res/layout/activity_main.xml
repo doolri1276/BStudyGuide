@@ -8,32 +8,31 @@
     android:layout_height="match_parent"
     tools:context="com.snownaul.bstudyguide.MainActivity">
 
+
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+
             <android.support.design.widget.AppBarLayout
                 android:id="@+id/appbar"
                 android:layout_width="match_parent"
                 android:layout_height="128dp"
                 android:theme="@style/AppTheme.AppBar"
+
                 >
 
                 <android.support.design.widget.CollapsingToolbarLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:theme="@style/CollapsedAppBar"
-                    app:contentScrim="@color/colorWhite"
+                    app:contentScrim="@color/colorDeepSkyBlue"
                     app:layout_scrollFlags="scroll|exitUntilCollapsed"
                     >
                     <ImageView
 
                         android:layout_width="match_parent"
                         android:layout_height="56dp"
-                        android:src="@drawable/brain_white"/>
+                        android:src="@drawable/brain_white"
+                        app:layout_collapseMode="parallax"/>
 
                     <android.support.v7.widget.Toolbar
                         android:id="@+id/toolbar"
@@ -43,7 +42,7 @@
                         app:title="STUDY GUIDE"
                         app:titleTextColor="@color/colorWhite"
                         >
-                        
+
 
 
                     </android.support.v7.widget.Toolbar>
@@ -53,21 +52,38 @@
             </android.support.design.widget.AppBarLayout>
 
             <android.support.v4.widget.NestedScrollView
+                android:id="@+id/nestedscrolllview"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1">
+                android:layout_height="match_parent"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-                <android.support.v4.view.ViewPager
+
+                <LinearLayout
+                    android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content">
 
-                    >
+                    <android.support.v4.view.ViewPager
+                        android:id="@+id/pager"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        >
 
-                </android.support.v4.view.ViewPager>
+                    </android.support.v4.view.ViewPager>
+                </LinearLayout>
+
+
+
+
+
+
 
             </android.support.v4.widget.NestedScrollView>
 
+
             <android.support.design.widget.BottomNavigationView
+                android:id="@+id/bottom_navigation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="?android:attr/windowBackground"
@@ -75,12 +91,31 @@
                 app:menu="@menu/navigation">
 
             </android.support.design.widget.BottomNavigationView>
-        </LinearLayout>
-        
 
 
-        
-        
+            <!--<FrameLayout-->
+                <!--android:id="@+id/frame"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--app:layout_behavoir="@string/apppbar_scolling_view_behavior"-->
+                <!--tools:background="#EFEFEF">-->
+
+                <!--<com.aurelhubert.ahbottomnavigation.AHBottomNavigation-->
+                    <!--android:id="@+id/bottom_navigation"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_gravity="bottom">-->
+
+                <!--</com.aurelhubert.ahbottomnavigation.AHBottomNavigation>-->
+
+            <!--</FrameLayout>-->
+
+
+
+
+
+
+
     </android.support.design.widget.CoordinatorLayout>
 
     <android.support.design.widget.NavigationView
