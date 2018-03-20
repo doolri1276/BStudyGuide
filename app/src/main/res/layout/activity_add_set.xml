@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.snownaul.bstudyguide.AddSetActivity"
+    >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorBase">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="16dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingTop="16dp">
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="@color/colorDeepSkyBlue"
+                app:contentPadding="16dp"
+                android:layout_marginBottom="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Folder"
+                            android:textColor="@color/colorWhite"
+                            android:textStyle="bold" />
+
+
+                        <Spinner
+                            android:layout_width="230dp"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="@color/colorWhite"
+
+                            >
+
+                        </Spinner>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Title"
+                            android:textSize="14sp"
+                            android:textColor="@color/colorWhite"
+                            android:textStyle="bold" />
+
+
+                        <EditText
+                            android:layout_width="230dp"
+                            android:layout_height="wrap_content"
+                            android:background="@color/colorWhite"
+                            android:lines="1"
+                            android:padding="8dp"
+                            android:singleLine="true">
+
+                        </EditText>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Info"
+
+                            android:textColor="@color/colorWhite"
+                            android:textStyle="bold" />
+
+
+                        <EditText
+                            android:layout_width="230dp"
+                            android:layout_height="wrap_content"
+                            android:background="@color/colorWhite"
+                            android:minLines="3"
+                            android:padding="8dp"
+
+                            >
+
+                        </EditText>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+            </android.support.v7.widget.CardView>
+
+            <include layout="@layout/layout_addset"/>
+            <include layout="@layout/layout_addset"/>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:contentPadding="8dp"
+                app:cardBackgroundColor="#efefef"
+                android:layout_marginBottom="16dp"
+                >
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_add_black_24px"
+                    android:tint="@color/colorDeepSkyBlue"
+                    android:padding="4dp"
+
+                    android:background="@color/colorWhite"/>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorWhite"
+                    android:padding="4dp"
+                    android:src="@drawable/ic_add_black_24px"
+
+                    android:tint="@color/colorDeepGray" />
+
+            </android.support.v7.widget.CardView>
+
+
+
+
+
+
+
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

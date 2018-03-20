@@ -146,6 +146,7 @@
             </android.support.v7.widget.CardView>
 
             <android.support.v7.widget.CardView
+                android:id="@+id/btn_addset"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:contentPadding="8dp"
@@ -154,6 +155,7 @@
                 app:cardBackgroundColor="@color/colorDeepSkyBlue"
                 android:elevation="2dp"
                 android:layout_marginTop="4dp"
+                android:clickable="true"
 
                 >
                 <ImageView
