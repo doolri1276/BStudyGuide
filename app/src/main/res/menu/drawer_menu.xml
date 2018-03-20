@@ -4,7 +4,7 @@
     <item
         android:id="@+id/menu_fav"
         android:title="Favorites"
-        android:icon="@drawable/ic_favorite_black_24px"
+        android:icon="@drawable/ic_favorite_lightgray_24px"
         android:iconTint="@color/colorDeepGray"
         />
 

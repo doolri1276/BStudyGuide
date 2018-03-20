@@ -66,7 +66,7 @@
                     android:id="@+id/pager"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
+                    android:layout_marginBottom="?attr/actionBarSize"
                     app:layout_behavior="@string/appbar_scrolling_view_behavior"
 
                     >
@@ -85,6 +85,7 @@
                 android:layout_height="wrap_content"
                 android:background="?android:attr/windowBackground"
                 android:layout_gravity="bottom"
+
                 app:menu="@menu/navigation">
 
             </android.support.design.widget.BottomNavigationView>

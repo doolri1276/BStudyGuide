@@ -10,7 +10,7 @@
     <color name="colorStrongPink">#ED146F</color>
     <color name="colorDenseYellow">#EDDE45</color>
     <color name="colorLightSkyBlue">#9BF0E9</color>
-    <color name="colorBase">#f2edeb</color>
+    <color name="colorBase">#fcf9fa</color>
     <color name="colorDarkNavy">#162752</color>
     <color name="colorCalmSkyBlue">#2bc7c9</color>
     <color name="colorCalmDensePink">#CE5973</color>
@@ -24,4 +24,6 @@
     <color name="colorPnotgood">#cf6b2d</color>
     <color name="colorPbad">#d92e28</color>
     <color name="colorDeepGray">#4B4B4B</color>
+    <color name="colorStrongYellow">#ffee56</color>
+    <color name="colorRed">#f15053</color>
 </resources>
