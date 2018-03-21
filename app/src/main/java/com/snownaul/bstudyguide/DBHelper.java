@@ -34,6 +34,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        db.execSQL("drop table if exists studyguide");
         db.execSQL("create table studyguide "+"(id integer primary key autoincrement, title text, info text, folder text, favor text, date text, recent text, icon int, iconcolor int)");
 
     }
@@ -44,7 +45,7 @@ public class DBHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean insertSet(String title, String info, String folder, String favor, String date, String recent, int icon, int iconColor){
+    public boolean insertSet(String title, String info, String folder, String favor, String date, String recent, int icon, int iconColor,ArrayList<Question> questions){
         SQLiteDatabase rdb=this.getReadableDatabase();
 
         Cursor cursor = rdb.rawQuery("SELECT name FROM sqlite_master WHERE type='table' AND name ='"+title+"'" , null);
@@ -67,7 +68,10 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put(SG_ICONCOLOR,iconColor);
         wdb.insert(SG_TABLE,null,contentValues);
 
-        wdb.execSQL("create table "+title+" (id integer primary key autoincrement, favor text, question text, answer text, times text, correcttimes text, percentage text)");
+        wdb.execSQL("create table "+title+" (id integer primary key autoincrement, favor text, question text, answerType int, answer text, correctAnswers string, times int, correctTimes int, percentage int)");
+
+
+
         return true;
     }
 
