@@ -8,12 +8,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
@@ -32,6 +37,9 @@ public class AddSetActivity extends AppCompatActivity {
 
     EditText etTitle;
     EditText etInfo;
+
+    String title;
+    String info;
 
     DBHelper dbHelper;
 
@@ -76,14 +84,61 @@ public class AddSetActivity extends AppCompatActivity {
         etTitle=findViewById(R.id.et_title);
         etInfo=findViewById(R.id.et_info);
 
+        etTitle.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                Log.i("MyTag","title onEditorAction");
+                return false;
+            }
+        });
+
+        etTitle.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                Log.i("MyTag","title beforeTextChanged");
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                Log.i("MyTag","title onTextChanged");
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                title=s.toString();
+                Log.i("MyTag","title 변경 : "+title);
+            }
+        });
+
+        etInfo.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                info=s.toString();
+                Log.i("MyTag","info 변경 : "+info);
+            }
+        });
+
 
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        Intent intent;
         switch (item.getItemId()) {
 
             case android.R.id.home:
+                intent =new Intent(getApplicationContext(),MainActivity.class);
+                startActivity(intent);
                 finish();
                 return true;
             case R.id.submit:
@@ -108,6 +163,9 @@ public class AddSetActivity extends AppCompatActivity {
 
                 String title=etTitle.getText().toString();
                 String info=etInfo.getText().toString();
+                Log.i("MyTag","title : "+title);
+                Log.i("MyTag","etInfo : "+info);
+
                 String folder="default";
                 String favor="false";
                 String date=getTime();
@@ -117,21 +175,21 @@ public class AddSetActivity extends AppCompatActivity {
                 Toast.makeText(this, iconColor+"", Toast.LENGTH_SHORT).show();
                 int percent=0;
 
-                //Boolean success=dbHelper.insertSet(title, info, folder, favor, date, recent, icon, iconColor, percent, questions);
+                Boolean success=dbHelper.insertSet(title, info, folder, favor, date, recent, icon, iconColor, percent, questions);
 
-//                if(success){
-//                    Intent intent=new Intent(this,SetDetailActivity.class);
-//                    intent.putExtra("title",title);
-//                    intent.putExtra("info",info);
-//                    intent.putExtra("folder",folder);
-//                    intent.putExtra("favor",favor);
-//                    intent.putExtra("date",date);
-//                    intent.putExtra("recent",recent);
-//                    intent.putExtra("icon",icon);
-//                    intent.putExtra("iconColor",iconColor);
-//                    startActivity(intent);
-//                    finish();
-//                }
+                if(success){
+                    intent=new Intent(this,SetDetailActivity.class);
+                    intent.putExtra("title",title);
+                    intent.putExtra("info",info);
+                    intent.putExtra("folder",folder);
+                    intent.putExtra("favor",favor);
+                    intent.putExtra("date",date);
+                    intent.putExtra("recent",recent);
+                    intent.putExtra("icon",icon);
+                    intent.putExtra("iconColor",iconColor);
+                    startActivity(intent);
+                    finish();
+                }
 
 
         }
@@ -143,6 +201,10 @@ public class AddSetActivity extends AppCompatActivity {
         mNow = System.currentTimeMillis();
         mDate = new Date(mNow);
         return mFormat.format(mDate);
+    }
+
+    public void submit(){
+
     }
 
 

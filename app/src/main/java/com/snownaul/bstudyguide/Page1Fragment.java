@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,20 +33,23 @@ public class Page1Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.page1,container,false);
 
+        DBHelper dbHelper=new DBHelper(getActivity());
+
+        sets=dbHelper.getAllSets();
+        Log.i("MyTag","Frag1 : Sets다 받앗다. size : "+sets.size());
+
         btnAddSet=view.findViewById(R.id.btn_addset);
         btnAddSet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(getContext(),AddSetActivity.class);
                 startActivity(intent);
+                //getActivity().finish();
 
             }
         });
+
         recyclerView=view.findViewById(R.id.recycler);
-
-        DBHelper dbHelper=new DBHelper(getActivity());
-
-        sets=dbHelper.getAllSets();
         setListAdapter=new SetListAdapter(getActivity(),sets);
         recyclerView.setAdapter(setListAdapter);
 
@@ -56,5 +60,15 @@ public class Page1Fragment extends Fragment {
 
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+//        DBHelper dbHelper=new DBHelper(getActivity());
+//        sets.clear();
+//
+//        sets=dbHelper.getAllSets();
+//
+//        setListAdapter.notifyDataSetChanged();
 
+    }
 }

@@ -51,7 +51,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         dbHelper=new DBHelper(this);
+
         sets=dbHelper.getAllSets();
+
+
 
 
 

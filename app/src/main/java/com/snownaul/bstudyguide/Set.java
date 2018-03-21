@@ -31,5 +31,24 @@ public class Set {
         this.percentage=percentage;
     }
 
+    @Override
+    public String toString() {
+        String str="<세트 정보입니다!>\n" +
+                "세트 아이디 : "+id+"\n" +
+                "세트 타이틀 : "+title+"\n"+
+                "세트 인포 : "+info+"\n"+
+                "세트 폴더 : "+folder+"\n"+
+                "세트 좋아요 : "+favor+"\n"+
+                "세트 만든날짜 : "+date+"\n"+
+                "세트 최근 사용 : "+recent+"\n"+
+                "세트 아이콘 아이디 : "+icon+"\n"+
+                "세트 아이콘 색 : "+iconColor+"\n"+
+                "세트 퍼센트 : "+percentage+"\n" +
+                "<끝입니다>===========\n\n";
 
+
+
+
+        return str;
+    }
 }

@@ -16,7 +16,7 @@ public class Question {
     ArrayList<Answer> answers=new ArrayList<>();
     String correctAnswers;
     int times=0;
-    int correctTiems=0;
+    int correctTimes =0;
     int percentage=0;
 
     public Question(int id, String favor, String question, int answerType, ArrayList<Answer> answers) {

@@ -95,6 +95,7 @@
             android:layout_height="24dp"
             android:layout_marginLeft="4dp"
             android:layout_gravity="right|top"
+            android:clickable="true"
             android:src="@drawable/ic_more_vert_black_24px"
             android:tint="@color/colorGray"
             />

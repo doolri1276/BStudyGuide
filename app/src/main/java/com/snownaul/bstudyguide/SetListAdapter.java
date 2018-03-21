@@ -2,9 +2,11 @@ package com.snownaul.bstudyguide;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.ToggleButton;
@@ -27,9 +29,9 @@ public class SetListAdapter extends RecyclerView.Adapter{
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        Log.i("MyTag","만든다 만든다 만든다!!!!!!");
         View itemView=LayoutInflater.from(context).inflate(R.layout.layout_recycler_sets,parent,false);
         VH vh=new VH(itemView);
-
 
         return vh;
     }
@@ -38,13 +40,13 @@ public class SetListAdapter extends RecyclerView.Adapter{
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         VH vh=(VH)holder;
         Set set=sets.get(position);
-
+        Log.i("MyTag","만든다!!! : "+position+"꺼 만든다아아아!!");
         vh.ivIcon.setImageResource(set.icon);
-        vh.ivIcon.setColorFilter(context.getResources().getColor(set.iconColor));
+        vh.ivIcon.setColorFilter(0xaaaaaa);
         vh.tvTitle.setText(set.title);
         vh.tvRecent.setText(set.recent);
         vh.tgFavor.setChecked(Boolean.parseBoolean(set.favor));
-        vh.tvPercentage.setText(set.percentage);
+        vh.tvPercentage.setText(set.percentage+"");
 
     }
 
@@ -71,9 +73,15 @@ public class SetListAdapter extends RecyclerView.Adapter{
             tvPercentage=itemView.findViewById(R.id.tv_percentage);
             ivMenu=itemView.findViewById(R.id.iv_menu);
 
+            Log.i("MyTag","SetAdapter : "+getLayoutPosition()+"번째꺼 만든다!!");
 
-
-
+            tgFavor.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    Set set=sets.get(getLayoutPosition());
+                    set.favor=isChecked+"";
+                }
+            });
 
 
 

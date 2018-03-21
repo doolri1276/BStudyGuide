@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.Layout;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -115,6 +116,8 @@ public class AddSetAdapter extends RecyclerView.Adapter{
                 public void afterTextChanged(Editable s) {
                     Question question=questions.get(getLayoutPosition());
                     question.question=s.toString();
+
+                    Log.i("MyTag",getLayoutPosition()+"번째 문제 : "+question.question);
 
 
                 }
