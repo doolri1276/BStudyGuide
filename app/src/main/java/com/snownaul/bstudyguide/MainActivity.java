@@ -6,6 +6,7 @@ import android.support.design.internal.BottomNavigationItemView;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.NestedScrollView;
@@ -38,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     MenuItem prevMenuItem;
     NestedScrollView nestedScrollView;
+
+    FragmentManager fragmentManager;
 
 
     android.support.v4.app.Fragment[] frags=new android.support.v4.app.Fragment[3];
@@ -136,29 +139,19 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-
-       /* bottomNavigation=findViewById(R.id.bottom_navigation);
-        AHBottomNavigationItem item1=new AHBottomNavigationItem("Home",R.drawable.ic_home_black_24dp);
-        bottomNavigation.addItem(item1);
-        AHBottomNavigationItem item2=new AHBottomNavigationItem("Study",R.drawable.ic_dashboard_black_24dp);
-        bottomNavigation.addItem(item2);
-        AHBottomNavigationItem item3=new AHBottomNavigationItem("Calendar",R.drawable.ic_today_black_24px);
-        bottomNavigation.addItem(item3);
-
-        frags[0]=new Page1Fragment();
-        frags[1]=new Page2Fragment();
-        frags[2]=new Page3Fragment();
-
-        bottomNavigation.setOnTabSelectedListener(new AHBottomNavigation.OnTabSelectedListener() {
-            @Override
-            public boolean onTabSelected(int position, boolean wasSelected) {
+        fragmentManager=getSupportFragmentManager();
 
 
 
-                return true;
-            }
-        });*/
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+
+
 
 
 

@@ -5,9 +5,13 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import java.util.ArrayList;
 
 /**
  * Created by alfo6-11 on 2018-03-20.
@@ -16,6 +20,12 @@ import android.view.ViewGroup;
 public class Page1Fragment extends Fragment {
 
     CardView btnAddSet;
+    RecyclerView recyclerView;
+    SetListAdapter setListAdapter;
+
+    ArrayList<Set> sets;
+
+
 
     @Nullable
     @Override
@@ -31,8 +41,19 @@ public class Page1Fragment extends Fragment {
 
             }
         });
+        recyclerView=view.findViewById(R.id.recycler);
+
+        DBHelper dbHelper=new DBHelper(getActivity());
+
+        sets=dbHelper.getAllSets();
+        setListAdapter=new SetListAdapter(getActivity(),sets);
+        recyclerView.setAdapter(setListAdapter);
+
+
+
 
         return view;
+
     }
 
 

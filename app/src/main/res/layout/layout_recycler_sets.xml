@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:gravity="center">
         <ImageView
-            android:id="@+id/ic_main"
+            android:id="@+id/iv_icon"
             android:layout_width="36dp"
             android:layout_height="36dp"
             android:background="@color/colorWhite"
@@ -30,7 +30,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <TextView
-                    android:id="@+id/title"
+                    android:id="@+id/tv_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="컴퓨터의 이해 1강"
@@ -51,7 +51,7 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/date"
+                android:id="@+id/tv_recent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="2018-03-20 04. 54. 33"
@@ -66,7 +66,7 @@
             android:orientation="vertical"
             android:layout_gravity="right">
             <ToggleButton
-                android:id="@+id/ic_like"
+                android:id="@+id/tg_favor"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_gravity="right"
@@ -77,7 +77,7 @@
                 android:textOn=""
                 />
             <TextView
-                android:id="@+id/percentage"
+                android:id="@+id/tv_percentage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|right"
@@ -90,6 +90,7 @@
 
 
         <ImageView
+            android:id="@+id/iv_menu"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginLeft="4dp"

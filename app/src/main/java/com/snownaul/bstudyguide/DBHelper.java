@@ -35,7 +35,7 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("drop table if exists studyguide");
-        db.execSQL("create table studyguide "+"(id integer primary key autoincrement, title text, info text, folder text, favor text, date text, recent text, icon int, iconcolor int)");
+        db.execSQL("create table studyguide "+"(id integer primary key autoincrement, title text, info text, folder text, favor text, date text, recent text, icon int, iconcolor int, percentage int)");
 
     }
 
@@ -45,7 +45,7 @@ public class DBHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean insertSet(String title, String info, String folder, String favor, String date, String recent, int icon, int iconColor,ArrayList<Question> questions){
+    public boolean insertSet(String title, String info, String folder, String favor, String date, String recent, int icon, int iconColor, int percentage, ArrayList<Question> questions){
         SQLiteDatabase rdb=this.getReadableDatabase();
 
         Cursor cursor = rdb.rawQuery("SELECT name FROM sqlite_master WHERE type='table' AND name ='"+title+"'" , null);
@@ -66,6 +66,7 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put(SG_RECENT,recent);
         contentValues.put(SG_ICON,icon);
         contentValues.put(SG_ICONCOLOR,iconColor);
+        contentValues.put("percentage",percentage);
         wdb.insert(SG_TABLE,null,contentValues);
 
         wdb.execSQL("create table "+title+" (id integer primary key autoincrement, favor text, question text, answerType int, answer text, correctAnswers string, times int, correctTimes int, percentage int)");
@@ -95,6 +96,7 @@ public class DBHelper extends SQLiteOpenHelper {
         String recent;
         int icon;
         int iconColor;
+        int percentage;
         while(res.isAfterLast()==false){
             id=res.getInt(res.getColumnIndex(SG_ID));
             title=res.getString(res.getColumnIndex(SG_TITLE));
@@ -105,7 +107,8 @@ public class DBHelper extends SQLiteOpenHelper {
             recent=res.getString(res.getColumnIndex(SG_RECENT));
             icon=res.getInt(res.getColumnIndex(SG_ICON));
             iconColor=res.getInt(res.getColumnIndex(SG_ICONCOLOR));
-            Set set=new Set(id,title,info,folder,favor,date,recent,icon,iconColor);
+            percentage=res.getInt(res.getColumnIndex("percentage"));
+            Set set=new Set(id,title,info,folder,favor,date,recent,icon,iconColor, percentage);
             sets.add(set);
             res.moveToNext();
         }

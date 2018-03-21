@@ -14,7 +14,8 @@
 
     <EditText
         android:id="@+id/et_answer"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
+        android:layout_weight="1"
         android:layout_height="wrap_content"
         android:background="@color/colorWhite"
         android:paddingBottom="8dp"
@@ -25,4 +26,14 @@
         android:hint="An answer goes here"
         android:textColor="@color/colorDeepGray"
         android:textSize="@dimen/dimenAddSetTextSize" />
+
+    <ImageView
+        android:id="@+id/iv_clear"
+        android:layout_width="20dp"
+        android:layout_height="match_parent"
+        android:src="@drawable/ic_clear_black_24px"
+        android:clickable="true"
+        android:background="@color/colorWhite"
+        android:layout_gravity="center_vertical"
+        android:tint="@color/colorLightGray"/>
 </LinearLayout>

@@ -15,9 +15,10 @@ public class Set {
     String recent;
     int icon;
     int iconColor;
+    int percentage;
 
 
-    public Set(int id, String title, String info, String folder, String favor, String date, String recent, int icon, int iconColor) {
+    public Set(int id, String title, String info, String folder, String favor, String date, String recent, int icon, int iconColor, int percentage) {
         this.id = id;
         this.title = title;
         this.info=info;
@@ -27,5 +28,8 @@ public class Set {
         this.recent = recent;
         this.icon = icon;
         this.iconColor = iconColor;
+        this.percentage=percentage;
     }
+
+
 }

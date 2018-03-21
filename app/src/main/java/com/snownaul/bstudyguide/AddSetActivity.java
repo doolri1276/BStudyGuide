@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -112,23 +113,25 @@ public class AddSetActivity extends AppCompatActivity {
                 String date=getTime();
                 String recent=date;
                 int icon=R.drawable.ic_brightness_1_black_24px;
-                int iconColor=0xdddddd;
+                int iconColor=getResources().getColor(R.color.colorLightGray);
+                Toast.makeText(this, iconColor+"", Toast.LENGTH_SHORT).show();
+                int percent=0;
 
-                Boolean success=dbHelper.insertSet(title, info, folder, favor, date, recent, icon, iconColor,questions);
+                //Boolean success=dbHelper.insertSet(title, info, folder, favor, date, recent, icon, iconColor, percent, questions);
 
-                if(success){
-                    Intent intent=new Intent(this,SetDetailActivity.class);
-                    intent.putExtra("title",title);
-                    intent.putExtra("info",info);
-                    intent.putExtra("folder",folder);
-                    intent.putExtra("favor",favor);
-                    intent.putExtra("date",date);
-                    intent.putExtra("recent",recent);
-                    intent.putExtra("icon",icon);
-                    intent.putExtra("iconColor",iconColor);
-                    startActivity(intent);
-                    finish();
-                }
+//                if(success){
+//                    Intent intent=new Intent(this,SetDetailActivity.class);
+//                    intent.putExtra("title",title);
+//                    intent.putExtra("info",info);
+//                    intent.putExtra("folder",folder);
+//                    intent.putExtra("favor",favor);
+//                    intent.putExtra("date",date);
+//                    intent.putExtra("recent",recent);
+//                    intent.putExtra("icon",icon);
+//                    intent.putExtra("iconColor",iconColor);
+//                    startActivity(intent);
+//                    finish();
+//                }
 
 
         }

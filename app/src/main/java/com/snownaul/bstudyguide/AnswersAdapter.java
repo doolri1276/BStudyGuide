@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -40,6 +41,11 @@ public class AnswersAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         VH vh=(VH)holder;
         Answer answer=answers.get(position);
+
+        if(position==0){
+            vh.ivClear.setVisibility(View.GONE);
+        }
+
         vh.cbAnswer.setChecked(answer.isChecked);
         vh.etAnswer.setText(answer.answer);
 
@@ -55,12 +61,14 @@ public class AnswersAdapter extends RecyclerView.Adapter {
 
         CheckBox cbAnswer;
         EditText etAnswer;
+        ImageView ivClear;
 
         public VH(View itemView) {
             super(itemView);
 
             cbAnswer=itemView.findViewById(R.id.cb_answer);
             etAnswer=itemView.findViewById(R.id.et_answer);
+            ivClear=itemView.findViewById(R.id.iv_clear);
 
             cbAnswer.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
@@ -87,6 +95,17 @@ public class AnswersAdapter extends RecyclerView.Adapter {
                     answer.answer=s.toString();
                 }
             });
+
+            ivClear.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    answers.remove(answers.get(getLayoutPosition()));
+                    AnswersAdapter.this.notifyItemRemoved(getLayoutPosition());
+                    AnswersAdapter.this.notifyItemRangeChanged(getLayoutPosition(),answers.size()-getLayoutPosition());
+                }
+            });
+
+
 
         }
     }
