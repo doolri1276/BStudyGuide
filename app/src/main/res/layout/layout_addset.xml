@@ -18,27 +18,44 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Question"
-                android:layout_gravity="top"
-                android:layout_marginTop="10dp"
-                android:textColor="@color/colorDeepGray"
-                android:textStyle="bold" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="36dp"
+                    android:layout_height="24dp"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/colorDeepGray"
+                    android:textStyle="bold"
+                    android:text="1."/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Question"
+                    android:layout_gravity="top"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/colorDeepGray"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="8dp"/>
+            </LinearLayout>
+
+
 
 
             <EditText
-                android:layout_width="230dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/colorWhite"
                 android:textColor="@color/colorDeepGray"
                 android:textSize="@dimen/dimenAddSetTextSize"
                 android:text="What is the most blah blah thing in this cosmos which makes us feel like hahaha?"
                 android:padding="8dp"
+                android:layout_marginLeft="36dp"
                 >
 
             </EditText>
@@ -48,7 +65,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -58,63 +76,121 @@
                 android:layout_gravity="top"
                 android:layout_marginTop="10dp"
                 android:textColor="@color/colorDeepGray"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:layout_marginLeft="36dp"
+                android:layout_marginBottom="8dp"/>
 
             <LinearLayout
 
-                android:layout_width="230dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-                <EditText
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/colorWhite"
-                    android:textColor="@color/colorDeepGray"
-                    android:text="The answer is moon"
-                    android:layout_marginBottom="8dp"
-                    android:textSize="@dimen/dimenAddSetTextSize"
-                    android:padding="8dp"
-                    />
-                <EditText
-                    android:layout_width="230dp"
-                    android:layout_height="wrap_content"
-                    android:background="@color/colorWhite"
-                    android:textColor="@color/colorDeepGray"
-                    android:text="I bet it is Mingky"
-                    android:layout_marginBottom="8dp"
-                    android:textSize="@dimen/dimenAddSetTextSize"
-                    android:padding="8dp"
-                    />
-                <EditText
-                    android:layout_width="230dp"
-                    android:layout_height="wrap_content"
-                    android:background="@color/colorWhite"
-                    android:textColor="@color/colorDeepGray"
-                    android:textSize="@dimen/dimenAddSetTextSize"
-                    android:text="터미널장치"
+                    android:layout_height="wrap_content">
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="4dp"
+                        />
 
-                    android:layout_marginBottom="8dp"
-                    android:padding="8dp"
-                    />
-                <EditText
-                    android:layout_width="230dp"
-                    android:layout_height="wrap_content"
-                    android:background="@color/colorWhite"
-                    android:textColor="@color/colorDeepGray"
-                    android:text="But Minky is fabulous"
-                    android:textSize="@dimen/dimenAddSetTextSize"
-                    android:layout_marginBottom="8dp"
-                    android:padding="8dp"
-                    />
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/colorWhite"
+                        android:textColor="@color/colorDeepGray"
+                        android:text="The answer is moon"
+                        android:layout_marginBottom="8dp"
+                        android:textSize="@dimen/dimenAddSetTextSize"
+                        android:padding="8dp"
+                        />
+                </LinearLayout>
 
-                <ImageView
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_add_black_24px"
-                    android:tint="@color/colorDeepSkyBlue"
-                    android:padding="8dp"
+                    android:layout_height="wrap_content">
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="4dp"
+                        />
 
-                    android:background="@color/colorWhite"/>
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/colorWhite"
+                        android:textColor="@color/colorDeepGray"
+                        android:text="The answer is moon"
+                        android:layout_marginBottom="8dp"
+                        android:textSize="@dimen/dimenAddSetTextSize"
+                        android:padding="8dp"
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="4dp"
+                        />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/colorWhite"
+                        android:textColor="@color/colorDeepGray"
+                        android:text="The answer is moon"
+                        android:layout_marginBottom="8dp"
+                        android:textSize="@dimen/dimenAddSetTextSize"
+                        android:padding="8dp"
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="4dp"
+                        />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/colorWhite"
+                        android:textColor="@color/colorDeepGray"
+                        android:text="The answer is moon"
+                        android:layout_marginBottom="8dp"
+                        android:textSize="@dimen/dimenAddSetTextSize"
+                        android:padding="8dp"
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="invisible"
+                        android:layout_marginRight="4dp"
+                        />
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_add_black_24px"
+                        android:tint="@color/colorDeepSkyBlue"
+                        android:padding="4dp"
+
+                        android:background="@color/colorWhite"/>
+                </LinearLayout>
+
+
+
 
 
             </LinearLayout>
