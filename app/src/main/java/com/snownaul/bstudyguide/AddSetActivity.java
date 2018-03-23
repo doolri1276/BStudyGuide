@@ -175,18 +175,11 @@ public class AddSetActivity extends AppCompatActivity {
                 Toast.makeText(this, iconColor+"", Toast.LENGTH_SHORT).show();
                 int percent=0;
 
-                Boolean success=dbHelper.insertSet(title, info, folder, favor, date, recent, icon, iconColor, percent, questions);
+                int id=dbHelper.insertSet(title, info, folder, favor, date, recent, icon, iconColor, percent, questions);
 
-                if(success){
+                if(id!=-1){
                     intent=new Intent(this,SetDetailActivity.class);
-                    intent.putExtra("title",title);
-                    intent.putExtra("info",info);
-                    intent.putExtra("folder",folder);
-                    intent.putExtra("favor",favor);
-                    intent.putExtra("date",date);
-                    intent.putExtra("recent",recent);
-                    intent.putExtra("icon",icon);
-                    intent.putExtra("iconColor",iconColor);
+                    intent.putExtra("id",id);
                     startActivity(intent);
                     finish();
                 }

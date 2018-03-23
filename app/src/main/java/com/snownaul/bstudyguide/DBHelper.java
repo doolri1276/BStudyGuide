@@ -29,6 +29,8 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String SG_ICONCOLOR="iconcolor";
 
 
+
+
     public DBHelper(Context context) {
         super(context, DATABASE_NAME,null, 1);
     }
@@ -48,14 +50,14 @@ public class DBHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean insertSet(String title, String info, String folder, String favor, String date, String recent, int icon, int iconColor, int percentage, ArrayList<Question> questions){
+    public int insertSet(String title, String info, String folder, String favor, String date, String recent, int icon, int iconColor, int percentage, ArrayList<Question> questions){
         SQLiteDatabase rdb=this.getReadableDatabase();
 
         Cursor cursor = rdb.rawQuery("SELECT name FROM sqlite_master WHERE type='table' AND name ='"+title+"'" , null);
         cursor.moveToFirst();
 
         if(cursor.getCount()>0){
-            return false;
+            return -1;
         }
 
         SQLiteDatabase wdb=this.getWritableDatabase();
@@ -98,9 +100,16 @@ public class DBHelper extends SQLiteOpenHelper {
             wdb.insert(title,null,contentValues);
 
         }
+        String sql="select id from studyguide where title = '"+title+"';";
+        Cursor res= rdb.rawQuery(sql,null);
 
+        if(res.moveToFirst()){
+            int id=res.getInt(0);
+            Log.i("MyTag","DBHelper : id만들어졌음 그 id는 ="+id);
+            return id;
+        }
 
-        return true;
+        return -1;
     }
 
     public int numberOfSets(){
@@ -147,6 +156,55 @@ public class DBHelper extends SQLiteOpenHelper {
         }
         Log.i("MyTag","set의 갯수 : "+sets.size());
         return sets;
+
+    }
+
+    public Set getASet(int id){
+
+        if(id==-1){
+            return null;
+        }
+
+        SQLiteDatabase db=this.getReadableDatabase();
+        Cursor res=db.rawQuery("select * from studyguide where id = "+id+";",null);
+        res.moveToFirst();
+
+        String title;
+        String info;
+        String folder;
+        String favor;
+        String date;
+        String recent;
+        int icon;
+        int iconColor;
+        int percentage;
+
+        title=res.getString(res.getColumnIndex(SG_TITLE));
+        info=res.getString(res.getColumnIndex(SG_INFO));
+        folder=res.getString(res.getColumnIndex(SG_FOLDER));
+        favor=res.getString(res.getColumnIndex(SG_FAVOR));
+        date=res.getString(res.getColumnIndex(SG_DATE));
+        recent=res.getString(res.getColumnIndex(SG_RECENT));
+        icon=res.getInt(res.getColumnIndex(SG_ICON));
+        iconColor=res.getInt(res.getColumnIndex(SG_ICONCOLOR));
+        percentage=res.getInt(res.getColumnIndex("percentage"));
+        Set set=new Set(id,title,info,folder,favor,date,recent,icon,iconColor, percentage);
+
+        return set;
+    }
+
+    public ArrayList<Question> getQuestions(String title){
+        ArrayList<Question> questions=new ArrayList<>();
+
+        return questions;
+    }
+
+    public void updateFavor(int id,boolean favor){
+        Log.i("MyTag",favor+"");
+
+        String sql="update studyguide set favor = '"+favor+"' where id = "+id+";";
+        this.getWritableDatabase().execSQL(sql);
+
 
     }
 

@@ -1,6 +1,7 @@
 package com.snownaul.bstudyguide;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,10 +22,12 @@ public class SetListAdapter extends RecyclerView.Adapter{
 
     Context context;
     ArrayList<Set> sets;
+    DBHelper dbHelper;
 
     public SetListAdapter(Context context, ArrayList<Set> sets) {
         this.context = context;
         this.sets = sets;
+        dbHelper=new DBHelper(context);
     }
 
     @Override
@@ -80,6 +83,18 @@ public class SetListAdapter extends RecyclerView.Adapter{
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                     Set set=sets.get(getLayoutPosition());
                     set.favor=isChecked+"";
+
+                    dbHelper.updateFavor(sets.get(getLayoutPosition()).id,isChecked);
+                }
+            });
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent=new Intent(context,SetDetailActivity.class);
+                    intent.putExtra("id",sets.get(getLayoutPosition()).id);
+                    context.startActivity(intent);
+
                 }
             });
 

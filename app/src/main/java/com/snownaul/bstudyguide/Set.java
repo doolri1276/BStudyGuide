@@ -1,5 +1,7 @@
 package com.snownaul.bstudyguide;
 
+import java.util.ArrayList;
+
 /**
  * Created by alfo6-11 on 2018-03-20.
  */
@@ -16,6 +18,7 @@ public class Set {
     int icon;
     int iconColor;
     int percentage;
+    ArrayList<Question> questions;
 
 
     public Set(int id, String title, String info, String folder, String favor, String date, String recent, int icon, int iconColor, int percentage) {

@@ -91,22 +91,7 @@
             </android.support.design.widget.BottomNavigationView>
 
 
-            <!--<FrameLayout-->
-                <!--android:id="@+id/frame"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="match_parent"-->
-                <!--app:layout_behavoir="@string/apppbar_scolling_view_behavior"-->
-                <!--tools:background="#EFEFEF">-->
 
-                <!--<com.aurelhubert.ahbottomnavigation.AHBottomNavigation-->
-                    <!--android:id="@+id/bottom_navigation"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_gravity="bottom">-->
-
-                <!--</com.aurelhubert.ahbottomnavigation.AHBottomNavigation>-->
-
-            <!--</FrameLayout>-->
 
 
 

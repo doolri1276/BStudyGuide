@@ -7,10 +7,21 @@
     android:layout_height="match_parent"
     tools:context="com.snownaul.bstudyguide.SetDetailActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="넣기 완료오오!"/>
+ <android.support.v7.widget.CardView
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     android:layout_margin="16dp"
+     app:contentPadding="8dp"
+     >
+     <TextView
+         android:id="@+id/tv_title"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:textSize="20sp"
+         android:text="How to be a bold bolt"
+         android:textColor="@color/colorDeepGray"
+         />
+ </android.support.v7.widget.CardView>
 
 
 </RelativeLayout>
