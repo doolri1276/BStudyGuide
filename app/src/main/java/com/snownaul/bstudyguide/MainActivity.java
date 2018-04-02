@@ -24,15 +24,10 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    DBHelper dbHelper;
-    ArrayList<Set> sets;
-
     DrawerLayout drawerLayout;
     NavigationView navigationView;
 
     ActionBarDrawerToggle drawerToggle;
-
-    //AHBottomNavigation bottomNavigation;
 
     ViewPager pager;
     FragAdapter fragAdapter;
@@ -49,15 +44,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        dbHelper=new DBHelper(this);
-
-        sets=dbHelper.getAllSets();
-
-
-
-
-
 
         drawerLayout=findViewById(R.id.layout_drawer);
         navigationView=findViewById(R.id.navigation_view);
@@ -84,9 +70,6 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout.addDrawerListener(drawerToggle);
         navigationView.setItemIconTintList(null);
 
-
-//        nestedScrollView=findViewById(R.id.nestedscrolllview);
-//        nestedScrollView.setFillViewport(true);
 
         pager=findViewById(R.id.pager);
         fragAdapter=new FragAdapter(getSupportFragmentManager());

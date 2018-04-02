@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Created by alfo6-11 on 2018-03-20.
@@ -30,7 +31,6 @@ public class DBHelper extends SQLiteOpenHelper {
 
 
 
-
     public DBHelper(Context context) {
         super(context, DATABASE_NAME,null, 1);
     }
@@ -39,7 +39,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
 
         Log.i("MyTag","DB : onCreate");
-        db.execSQL("create table studyguide "+"(id integer primary key autoincrement, title text, info text, folder text, favor text, date text, recent text, icon int, iconcolor int, percentage int)");
+        db.execSQL("create table studyguide "+"(id integer primary key autoincrement, title text, info text, folder text, favor text, date text, recent text, icon integer, iconcolor integer, percentage integer)");
 
     }
 
@@ -51,16 +51,16 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public int insertSet(String title, String info, String folder, String favor, String date, String recent, int icon, int iconColor, int percentage, ArrayList<Question> questions){
-        SQLiteDatabase rdb=this.getReadableDatabase();
+        SQLiteDatabase db=this.getWritableDatabase();
 
-        Cursor cursor = rdb.rawQuery("SELECT name FROM sqlite_master WHERE type='table' AND name ='"+title+"'" , null);
+        Cursor cursor = db.rawQuery("SELECT name FROM sqlite_master WHERE type='table' AND name ='"+title+"'" , null);
         cursor.moveToFirst();
 
         if(cursor.getCount()>0){
             return -1;
         }
 
-        SQLiteDatabase wdb=this.getWritableDatabase();
+        //SQLiteDatabase wdb=this.getWritableDatabase();
         ContentValues contentValues=new ContentValues();
 
         contentValues.put(SG_TITLE,title);
@@ -72,15 +72,23 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put(SG_ICON,icon);
         contentValues.put(SG_ICONCOLOR,iconColor);
         contentValues.put("percentage",percentage);
-        wdb.insert(SG_TABLE,null,contentValues);
+        db.insert(SG_TABLE,null,contentValues);
 
 //        Cursor res=wdb.rawQuery("select id from studyguide where title='"+title+"'",null);
 //        int idid=res.getInt(0);
 
+        String sql="select id from studyguide where title = '"+title+"';";
+        Cursor res= db.rawQuery(sql,null);
+        int id=-1;
+        if(res.moveToFirst()){
+            id=res.getInt(0);
+            Log.i("MyTag","DBHelper : id만들어졌음 그 id는 ="+id);
 
-        wdb.execSQL("create table "+title+" (id integer primary key autoincrement, " +
-                "favor text, question text, answerType int, answer text, correctAnswers " +
-                "string, times int, correctTimes int, percentage int)");
+        }
+
+        db.execSQL("create table set"+id+" (id integer primary key autoincrement, " +
+                "favor text, question text, answerType integer, answers text, correctAnswers " +
+                "text, times integer, correctTimes integer, percentage integer)");
 
         for(int i=0;i<questions.size();i++){
             Question question=questions.get(i);
@@ -90,26 +98,26 @@ public class DBHelper extends SQLiteOpenHelper {
             contentValues.put("answerType",question.answerType);
             String s="";
             for(int j=0;j<question.answers.size();j++){
-                s+=question.answers.get(j)+"|";
+                s+=question.answers.get(j).answer+":::";
             }
-            contentValues.put("answer",s);
+            contentValues.put("answers",s);
+
+            String ca="";
+            for(int j=0;j<question.answers.size();j++){
+                Answer answer=question.answers.get(i);
+                if(answer.isChecked) ca+=(i+1)+", ";
+            }
+
             contentValues.put("correctAnswers",question.correctAnswers);
             contentValues.put("times",question.times);
             contentValues.put("correctTimes",question.correctTimes);
             contentValues.put("percentage",question.percentage);
-            wdb.insert(title,null,contentValues);
+            db.insert("set"+id,null,contentValues);
 
         }
-        String sql="select id from studyguide where title = '"+title+"';";
-        Cursor res= rdb.rawQuery(sql,null);
 
-        if(res.moveToFirst()){
-            int id=res.getInt(0);
-            Log.i("MyTag","DBHelper : id만들어졌음 그 id는 ="+id);
-            return id;
-        }
 
-        return -1;
+        return id;
     }
 
     public int numberOfSets(){
@@ -155,6 +163,7 @@ public class DBHelper extends SQLiteOpenHelper {
             res.moveToNext();
         }
         Log.i("MyTag","set의 갯수 : "+sets.size());
+        Collections.reverse(sets);
         return sets;
 
     }
@@ -193,8 +202,53 @@ public class DBHelper extends SQLiteOpenHelper {
         return set;
     }
 
-    public ArrayList<Question> getQuestions(String title){
+    public ArrayList<Question> getQuestions(int setId){
         ArrayList<Question> questions=new ArrayList<>();
+
+        SQLiteDatabase db=this.getReadableDatabase();
+        Cursor res=db.rawQuery("select * from set"+setId+";",null);
+        res.moveToFirst();
+
+        int id;
+        String favor;
+        String question;
+        int answerType=0;
+        ArrayList<Answer>answers=new ArrayList<>();
+        String correctAnswers;
+        int times;
+        int correctTimes;
+        int percentage;
+
+        while(res.isAfterLast()==false){
+
+            id=res.getInt(res.getColumnIndex(SG_ID));
+            favor=res.getString(res.getColumnIndex("favor"));
+            question=res.getString(res.getColumnIndex("question"));
+            answerType=res.getInt(res.getColumnIndex("answerType"));
+            String answersstr=res.getString(res.getColumnIndex("answers"));
+            String[] answerStrings=answersstr.split(":::");
+
+            for(int i=0;i<answerStrings.length;i++){
+                answers.add(new Answer(answerStrings[i]));
+            }
+            correctAnswers=res.getString(res.getColumnIndex("correctAnswers"));
+            String[] correctA=correctAnswers.split(", ");
+            for(int i=0;i<correctA.length;i++){
+                if(correctA[i].length()==0)continue;
+                answers.get((Integer.parseInt(correctA[i]))-1).isChecked=true;
+            }
+            times=res.getInt(res.getColumnIndex("times"));
+            correctTimes=res.getInt(res.getColumnIndex("correctTimes"));
+            percentage=res.getInt(res.getColumnIndex("percentage"));
+
+            Question questionItem=new Question(id,favor,question,answerType,answers,correctAnswers,times,correctTimes,percentage);
+            questions.add(questionItem);
+
+            res.moveToNext();
+        }
+
+
+
 
         return questions;
     }
@@ -203,7 +257,9 @@ public class DBHelper extends SQLiteOpenHelper {
         Log.i("MyTag",favor+"");
 
         String sql="update studyguide set favor = '"+favor+"' where id = "+id+";";
-        this.getWritableDatabase().execSQL(sql);
+        SQLiteDatabase db=getWritableDatabase();
+        db.execSQL(sql);
+
 
 
     }

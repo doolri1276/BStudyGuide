@@ -47,8 +47,100 @@ public class AddSetActivity extends AppCompatActivity {
     Date mDate;
     SimpleDateFormat mFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 
+    public void addAFullQuestion(String question, Answer a1, Answer a2, Answer a3, Answer a4){
+        ArrayList<Answer> answers=new ArrayList<>();
+        answers.add(a1);
+        answers.add(a2);
+        answers.add(a3);
+        answers.add(a4);
+        questions.add(new Question(question,  answers));
+    }
 
+    public void addDatas(){
 
+        addAFullQuestion("다음 중 직접접근 저장장치에 해당되는 보조기억장치는?",
+                new Answer("캐시 기억장치"),new Answer("레지스터"),
+                new Answer("DRAM"),new Answer("하드디스크")
+                );
+
+        addAFullQuestion("컴퓨터의 보조기억장치에 대한 설명으로 올바른 것은?",
+                new Answer("비휘발성 기억장치이다."),
+                new Answer("주기억장치에 비해 빠르게 데이터를 처리할 수 있다."),
+                new Answer("기억장치 계층 구조상 캐시 기억장치와 주기억장치 사이에 위치한다."),
+                new Answer("저장할 데이터가 소량일 때는 주기억장치 대신 보조기억장치를 사용한다.")
+        );
+
+        addAFullQuestion("다음 중 디스크 어레이를 활용하는 목적에 해당되는 것은?",
+                new Answer("보조기억장치의 비용을 절감한다."),
+                new Answer("데이터 저장의 신뢰성이나 성능을 높인다."),
+                new Answer("보조기억장치의 전력 소모를 절감한다."),
+                new Answer("보조기억장치의 휴대성을 높인다.")
+        );
+
+        addAFullQuestion("다음 중 WORM 형식의 광 디스크에 대한 올바른 설명은?",
+                new Answer("공백 상태로 제작된 디스크에 1회에 한해 기록할 수 있다."),
+                new Answer("자기디스크처럼 자유롭게 재기록을 할 수 있다."),
+                new Answer("약 1,000회 가량 재 기록을 할 수 있다."),
+                new Answer("공장에서 데이터가 기록된 상태로 제작된다.")
+        );
+
+        addAFullQuestion("다음 중 SSD에 대한 설명으로 올바른 것은?",
+                new Answer("플로피디스크라고도 부른다."),
+                new Answer("주로 플래시 메모리를 사용하여 가볍고 전력 소모가 적다."),
+                new Answer("모터로 구동되므로 내구성이 떨어지는 보조기억장치이다."),
+                new Answer("트랙의 형태가 나선형인 ROM 형태의 장치이다.")
+        );
+
+        addAFullQuestion("다음 중 시스템 소프트웨어에 해당되는 것은?",
+                new Answer("워드프로세서"),
+                new Answer("포토샵"),
+                new Answer("Windows 10"),
+                new Answer("엑셀")
+        );
+
+        addAFullQuestion("다음 중 운영체제에 대한 설명으로 올바른 것은?",
+                new Answer("컴퓨터를 운영하는 사람이나 조직을 의미한다."),
+                new Answer("마이크로소프트 Windows 10은 오픈 소스 운영체제이다."),
+                new Answer("응용 소프트웨어 유형에 해당되는 소프트웨어이다."),
+                new Answer("컴퓨터의 프로그램들이 원활하게 실행될 수 있도록 관리하고 지원하는 역할을 한다.")
+        );
+
+        addAFullQuestion("다음 중 데이터를 표 형식으로 구성하여 계산이나 분석 등을 할 수 있게 하는 소프트웨어는?",
+                new Answer("스프레드시트"),
+                new Answer("안드로이드"),
+                new Answer("워드프로세스"),
+                new Answer("유틸리티 소프트웨어")
+        );
+
+        addAFullQuestion("다음 중 프로그래밍 언어에 대한 설명으로 올바른 것은?",
+                new Answer("어셈블리어는 CPU가 직접 이해하고 실행할 수 있다."),
+                new Answer("제2세대 언어는 인공지능 응용 개발용 언어이다."),
+                new Answer("제3세대 언어인 고급언어는 언어 번역기가 필요 없다."),
+                new Answer("제4세대 언어는 리포트 생성, 데이터 조작 및 분석 등 기존 순차적 고급언어에 비해 높은 수준의 기능을 제공한다.")
+        );
+
+        addAFullQuestion("다음 중 자유 소프트웨어 운동과 관련이 깊은 것은?",
+                new Answer("사유 소프트웨어"),
+                new Answer("UNIX"),
+                new Answer("GNU 프로젝트"),
+                new Answer("한글 워드프로세서")
+        );
+
+//        addAFullQuestion("",
+//                new Answer(""),
+//                new Answer(""),
+//                new Answer(""),
+//                new Answer("")
+//        );
+//
+//        addAFullQuestion("",
+//                new Answer(""),
+//                new Answer(""),
+//                new Answer(""),
+//                new Answer("")
+//        );
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,10 +150,8 @@ public class AddSetActivity extends AppCompatActivity {
         dbHelper=new DBHelper(this);
 
         questions.add(new Question());
-        questions.add(new Question());
-        questions.add(new Question());
-        questions.add(new Question());
-        questions.add(new Question());
+
+        addDatas();
 
         recyclerView=findViewById(R.id.recycler);
         addSetAdapter=new AddSetAdapter(this,questions);
@@ -80,6 +170,7 @@ public class AddSetActivity extends AppCompatActivity {
         });
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Create a New Set");
 
         etTitle=findViewById(R.id.et_title);
         etInfo=findViewById(R.id.et_info);
@@ -183,6 +274,7 @@ public class AddSetActivity extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                 }
+
 
 
         }

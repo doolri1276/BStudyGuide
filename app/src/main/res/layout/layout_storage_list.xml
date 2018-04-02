@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    android:paddingTop="12dp"
+
+    android:orientation="vertical"
+    android:background="#efefef"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingRight="16dp"
+        android:paddingLeft="16dp">
+        <ToggleButton
+            android:id="@+id/tg_favor"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@drawable/sel_toggle_favor"
+            android:textOn=""
+            android:textOff=""
+            android:layout_gravity="right"
+            android:tint="@color/colorRed"
+            android:layout_marginRight="8dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Question "
+            android:layout_gravity="top"
+
+            android:textColor="@color/colorDeepGray"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"/>
+        <TextView
+            android:id="@+id/tv_question_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1"
+            android:layout_gravity="top"
+            android:layout_weight="1"
+            android:textColor="@color/colorDeepGray"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"/>
+
+        <ImageView
+            android:id="@+id/iv_edit"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_mode_edit_black_24px"
+            android:layout_gravity="right"
+            android:clickable="true"
+            android:tint="@color/colorDeepGray"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:paddingRight="16dp"
+        android:paddingLeft="16dp"
+
+        >
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+
+            android:layout_weight="1"
+            android:background="@color/colorWhite"
+            android:padding="8dp">
+            <TextView
+                android:id="@+id/tv_question"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:text="Which of the followings describes of life cycle of a piece of post-its?"
+                android:textColor="@color/colorBlack"/>
+            <TextView
+                android:id="@+id/tv_answer_num"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:textColor="@color/colorGray"
+                android:text="(2 Answers)"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="4dp"
+        android:background="@color/colorWhite"
+
+        >
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </android.support.v7.widget.RecyclerView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            >
+
+            <CheckBox
+                android:id="@+id/cb_answer01"
+                android:layout_width="32dp"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWhite"
+                android:checked="false"
+                android:clickable="false"
+                android:paddingTop="4dp"
+                android:layout_gravity="center"
+                android:theme="@style/MyCheckBox2" />
+            <TextView
+                android:id="@+id/ans01"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWhite"
+                android:layout_weight="1"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:textColor="@color/colorGray"
+                android:textStyle="normal"
+                android:layout_gravity="center_vertical"
+                android:textSize="14sp"
+                android:text="Life cycle is Life Cycle yes it is."/>
+
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#efefef"
+            />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            >
+
+            <CheckBox
+                android:id="@+id/cb_answer02"
+                android:layout_width="32dp"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWhite"
+                android:checked="true"
+                android:clickable="false"
+                android:layout_gravity="center"
+                android:theme="@style/MyCheckBox2" />
+            <TextView
+                android:id="@+id/ans02"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWhite"
+                android:layout_weight="1"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:textColor="@color/colorDeepGray"
+                android:textStyle="bold"
+                android:layout_gravity="center_vertical"
+                android:textSize="14sp"
+                android:text="Life cycle is Life Cycle yes it is."/>
+
+            <View
+                android:layout_width="18dp"
+                android:layout_height="18dp"/>
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#efefef"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            >
+
+            <CheckBox
+                android:id="@+id/cb_answer03"
+                android:layout_width="32dp"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWhite"
+                android:checked="false"
+                android:clickable="false"
+                android:layout_gravity="center"
+                android:theme="@style/MyCheckBox2" />
+            <TextView
+                android:id="@+id/ans03"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWhite"
+                android:layout_weight="1"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:textColor="@color/colorGray"
+                android:textStyle="normal"
+                android:layout_gravity="center_vertical"
+                android:textSize="14sp"
+                android:text="Life cycle is Life Cycle yes it is."/>
+
+            <View
+                android:layout_width="18dp"
+                android:layout_height="18dp"/>
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#efefef"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            >
+
+            <CheckBox
+                android:id="@+id/cb_answer04"
+                android:layout_width="32dp"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWhite"
+                android:checked="false"
+                android:clickable="false"
+                android:layout_gravity="center"
+                android:theme="@style/MyCheckBox2" />
+
+            <TextView
+                android:id="@+id/ans04"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:layout_weight="1"
+                android:background="@color/colorWhite"
+                android:text="Life cycle is Life Cycle yes it is."
+                android:textColor="@color/colorGray"
+                android:textSize="14sp"
+                android:textStyle="normal" />
+
+            <View
+                android:layout_width="18dp"
+                android:layout_height="18dp"/>
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#efefef"
+            />
+
+
+
+
+    </LinearLayout>
+
+
+<View
+    android:layout_width="match_parent"
+    android:layout_height="1dp"
+    android:background="@color/colorLightGray"
+    android:layout_marginTop="12dp"/>
+
+
+</LinearLayout>

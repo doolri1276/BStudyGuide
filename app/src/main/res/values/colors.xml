@@ -5,11 +5,12 @@
     <color name="colorAccent">#ed3e7a</color>
     <color name="colorBlack">#000000</color>
     <color name="colorWhite">#ffffff</color>
-    <color name="colorDeepSkyBlue">#61D2D6</color>
+    <color name="colorDeepSkyBlue">#61d2d6</color>
+    <color name="colorDarkSkyBlue">#097679</color>
+    <color name="colorLightSkyBlue">#84d5d9</color>
     <color name="colorCalmPink">#EA3556</color>
     <color name="colorStrongPink">#ED146F</color>
     <color name="colorDenseYellow">#EDDE45</color>
-    <color name="colorLightSkyBlue">#9BF0E9</color>
     <color name="colorBase">#fcf9fa</color>
     <color name="colorDarkNavy">#162752</color>
     <color name="colorCalmSkyBlue">#2bc7c9</color>

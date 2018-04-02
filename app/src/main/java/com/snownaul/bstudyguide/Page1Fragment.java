@@ -24,19 +24,13 @@ public class Page1Fragment extends Fragment {
     RecyclerView recyclerView;
     SetListAdapter setListAdapter;
 
-    ArrayList<Set> sets;
-
-
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.page1,container,false);
 
-        DBHelper dbHelper=new DBHelper(getActivity());
-
-        sets=dbHelper.getAllSets();
-        Log.i("MyTag","Frag1 : Sets다 받앗다. size : "+sets.size());
+        Log.i("MyTag","Frag1 : Sets다 받앗다. size : "+G.sets.size());
 
         btnAddSet=view.findViewById(R.id.btn_addset);
         btnAddSet.setOnClickListener(new View.OnClickListener() {
@@ -50,7 +44,7 @@ public class Page1Fragment extends Fragment {
         });
 
         recyclerView=view.findViewById(R.id.recycler);
-        setListAdapter=new SetListAdapter(getActivity(),sets);
+        setListAdapter=new SetListAdapter(getActivity(),G.sets);
         recyclerView.setAdapter(setListAdapter);
 
 
@@ -63,12 +57,12 @@ public class Page1Fragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-//        DBHelper dbHelper=new DBHelper(getActivity());
-//        sets.clear();
-//
-//        sets=dbHelper.getAllSets();
-//
-//        setListAdapter.notifyDataSetChanged();
+        Log.i("MyTag","Resume 되었다!!");
+
+        G.sets.clear();
+        G.sets=G.dbHelper.getAllSets();
+        setListAdapter.setSets(G.sets);
+        setListAdapter.notifyDataSetChanged();
 
     }
 }

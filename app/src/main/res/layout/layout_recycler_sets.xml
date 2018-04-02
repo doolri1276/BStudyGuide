@@ -36,7 +36,7 @@
                     android:text="컴퓨터의 이해 1강"
                     android:paddingBottom="4dp"
                     android:background="@color/colorWhite"
-                    android:textSize="16dp"
+                    android:textSize="14dp"
                     android:textColor="@color/colorBlack"
 
                     />

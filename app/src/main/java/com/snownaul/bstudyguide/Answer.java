@@ -5,9 +5,19 @@ package com.snownaul.bstudyguide;
  */
 
 public class Answer {
-    boolean isChecked=true;
+
+    boolean isChecked=false;
     String answer="";
 
+    public Answer() {
+    }
 
+    public Answer(String answer) {
+        this.answer = answer;
+    }
 
+    public Answer(boolean isChecked, String answer) {
+        this.isChecked = isChecked;
+        this.answer = answer;
+    }
 }

@@ -79,6 +79,7 @@
                         <EditText
                             android:id="@+id/et_title"
                             android:layout_width="230dp"
+                            android:textSize="14sp"
                             android:layout_height="wrap_content"
                             android:background="@color/colorWhite"
                             android:lines="1"
@@ -111,6 +112,7 @@
                             android:layout_height="wrap_content"
                             android:background="@color/colorWhite"
                             android:minLines="3"
+                            android:textSize="14sp"
                             android:padding="8dp"
 
                             >

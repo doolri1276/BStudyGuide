@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import java.util.ArrayList;
@@ -24,10 +25,14 @@ public class SetListAdapter extends RecyclerView.Adapter{
     ArrayList<Set> sets;
     DBHelper dbHelper;
 
+    public void setSets(ArrayList<Set> sets) {
+        this.sets = sets;
+    }
+
     public SetListAdapter(Context context, ArrayList<Set> sets) {
         this.context = context;
         this.sets = sets;
-        dbHelper=new DBHelper(context);
+
     }
 
     @Override
