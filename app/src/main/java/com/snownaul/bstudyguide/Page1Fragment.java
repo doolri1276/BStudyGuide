@@ -44,8 +44,10 @@ public class Page1Fragment extends Fragment {
         });
 
         recyclerView=view.findViewById(R.id.recycler);
-        setListAdapter=new SetListAdapter(getActivity(),G.sets);
+        setListAdapter=new SetListAdapter(getActivity());
         recyclerView.setAdapter(setListAdapter);
+
+        recyclerView.requestFocus();
 
 
 
@@ -59,9 +61,7 @@ public class Page1Fragment extends Fragment {
         super.onResume();
         Log.i("MyTag","Resume 되었다!!");
 
-        G.sets.clear();
-        G.sets=G.dbHelper.getAllSets();
-        setListAdapter.setSets(G.sets);
+        G.dbHelper.getAllSets();
         setListAdapter.notifyDataSetChanged();
 
     }

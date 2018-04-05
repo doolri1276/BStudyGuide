@@ -17,9 +17,6 @@ public class SetDetailActivity extends AppCompatActivity {
 
     SearchView searchView;
 
-    Set set;
-    ArrayList<Question> questions;
-
     ToggleButton tgFavor;
     TextView tvFolder;
     TextView tvTitle;
@@ -36,23 +33,12 @@ public class SetDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set_detail);
 
-        Intent intent=getIntent();
-
-        int id=intent.getIntExtra("id",-1);
-
-        if(id==-1){
-            Log.i("MyTag","SetDetailActivity : intent에서 받아온 값이 -1");
+        if(G.set==null){
+            Log.i("MyTag","SetDetailActivity : 지금 설정된 set이 없다.");
             finish();
         }
 
-        set=G.dbHelper.getASet(id);
-
-        if(set==null){
-            Log.i("MyTag","SetDetailActivity : db에서 받아온 set이 null");
-            finish();
-        }
-
-        questions=G.dbHelper.getQuestions(id);
+        G.dbHelper.getQuestions();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -64,14 +50,14 @@ public class SetDetailActivity extends AppCompatActivity {
         tvRecent=findViewById(R.id.tv_recent);
         tvQuetionsCnt=findViewById(R.id.tv_questionscnt);
 
-        tgFavor.setChecked(Boolean.parseBoolean(set.favor));
-        tvFolder.setText(set.folder);
-        tvTitle.setText(set.title);
+        tgFavor.setChecked(Boolean.parseBoolean(G.set.favor));
+        tvFolder.setText(G.set.folder);
+        tvTitle.setText(G.set.title);
         getSupportActionBar().setTitle("");
-        tvInfo.setText(set.info);
-        tvRecent.setText(set.recent);
-        if(questions!=null){
-            tvQuetionsCnt.setText(questions.size()+"");
+        tvInfo.setText(G.set.info);
+        tvRecent.setText(G.set.recent);
+        if(G.questions!=null){
+            tvQuetionsCnt.setText(G.questions.size()+"");
         }
 
 
@@ -112,21 +98,24 @@ public class SetDetailActivity extends AppCompatActivity {
 
     public void clickStorage(View v){
         Intent intent=new Intent(this,SetDetailStorageActivity.class);
-        intent.putExtra("title",set.title);
-        intent.putExtra("id",set.id);
         startActivity(intent);
 
     }
 
     public void clickStudy(View v){
+        Intent intent=new Intent(this,SetDetailStudyActivity.class);
+        startActivity(intent);
 
     }
 
     public void clickPlay(View v){
-
+        Intent intent=new Intent(this,SetDetailPlayActivity.class);
+        startActivity(intent);
     }
 
     public void clickReport(View v){
+        Intent intent=new Intent(this,SetDetailReportActivity.class);
+        startActivity(intent);
 
     }
 }

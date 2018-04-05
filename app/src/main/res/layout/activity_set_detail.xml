@@ -355,6 +355,8 @@
                             app:cardBackgroundColor="#fafafa"
                             android:layout_marginLeft="4dp"
                             app:contentPadding="8dp"
+                            android:clickable="true"
+                            android:onClick="clickStudy"
                             >
 
                             <LinearLayout
@@ -404,6 +406,8 @@
 app:cardBackgroundColor="#fafafa"
                             android:layout_marginRight="4dp"
                             app:contentPadding="8dp"
+                            android:clickable="true"
+                            android:onClick="clickPlay"
                             >
 
                             <LinearLayout
@@ -437,6 +441,8 @@ app:cardBackgroundColor="#fafafa"
                             app:cardBackgroundColor="#fafafa"
                             android:layout_marginLeft="4dp"
                             app:contentPadding="8dp"
+                            android:clickable="true"
+                            android:onClick="clickReport"
                             >
 
                             <LinearLayout

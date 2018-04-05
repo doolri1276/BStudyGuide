@@ -2,9 +2,11 @@ package com.snownaul.bstudyguide;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
@@ -22,16 +24,10 @@ import java.util.ArrayList;
 public class SetListAdapter extends RecyclerView.Adapter{
 
     Context context;
-    ArrayList<Set> sets;
     DBHelper dbHelper;
 
-    public void setSets(ArrayList<Set> sets) {
-        this.sets = sets;
-    }
-
-    public SetListAdapter(Context context, ArrayList<Set> sets) {
+    public SetListAdapter(Context context) {
         this.context = context;
-        this.sets = sets;
 
     }
 
@@ -47,7 +43,7 @@ public class SetListAdapter extends RecyclerView.Adapter{
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         VH vh=(VH)holder;
-        Set set=sets.get(position);
+        Set set=G.sets.get(position);
         Log.i("MyTag","만든다!!! : "+position+"꺼 만든다아아아!!");
         vh.ivIcon.setImageResource(set.icon);
         vh.ivIcon.setColorFilter(0xaaaaaa);
@@ -60,7 +56,7 @@ public class SetListAdapter extends RecyclerView.Adapter{
 
     @Override
     public int getItemCount() {
-        return sets.size();
+        return G.sets.size();
     }
 
     class VH extends RecyclerView.ViewHolder{
@@ -86,10 +82,7 @@ public class SetListAdapter extends RecyclerView.Adapter{
             tgFavor.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    Set set=sets.get(getLayoutPosition());
-                    set.favor=isChecked+"";
-
-                    dbHelper.updateFavor(sets.get(getLayoutPosition()).id,isChecked);
+                    G.dbHelper.updateFavor(getLayoutPosition(),isChecked);
                 }
             });
 
@@ -97,9 +90,41 @@ public class SetListAdapter extends RecyclerView.Adapter{
                 @Override
                 public void onClick(View v) {
                     Intent intent=new Intent(context,SetDetailActivity.class);
-                    intent.putExtra("id",sets.get(getLayoutPosition()).id);
+
+                    G.set=G.sets.get(getLayoutPosition());
                     context.startActivity(intent);
 
+                }
+            });
+
+            ivMenu.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    PopupMenu popup=new PopupMenu(context,v);
+                    popup.getMenuInflater().inflate(R.menu.popup_setlist,popup.getMenu());
+                    popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                        @Override
+                        public boolean onMenuItemClick(MenuItem item) {
+
+                            switch (item.getItemId()){
+                                case R.id.popup_edit:
+                                    break;
+
+                                case R.id.popup_move:
+                                    break;
+
+                                case R.id.popup_share:
+                                    break;
+
+                                case R.id.popup_delete:
+
+                                    break;
+                            }
+
+
+                            return true;
+                        }
+                    });
                 }
             });
 

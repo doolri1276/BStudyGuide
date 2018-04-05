@@ -20,6 +20,17 @@ public class Set {
     int percentage;
     ArrayList<Question> questions;
 
+    public Set(String title, String info, String folder, String favor, String date, String recent, int icon, int iconColor) {
+        this.title = title;
+        this.info = info;
+        this.folder = folder;
+        this.favor = favor;
+        this.date = date;
+        this.recent = recent;
+        this.icon = icon;
+        this.iconColor = iconColor;
+        percentage=0;
+    }
 
     public Set(int id, String title, String info, String folder, String favor, String date, String recent, int icon, int iconColor, int percentage) {
         this.id = id;

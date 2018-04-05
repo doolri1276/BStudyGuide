@@ -27,7 +27,8 @@ public class IntroActivity extends AppCompatActivity {
 
         G.dbHelper=new DBHelper(this);
 
-        G.sets=G.dbHelper.getAllSets();
+
+        G.dbHelper.getAllSets();
 
         getSupportActionBar().hide();
 
@@ -43,7 +44,7 @@ public class IntroActivity extends AppCompatActivity {
 
 
 
-        timer.schedule(task,3200);
+        timer.schedule(task,3000);
 
     }
 

@@ -1,6 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
-</android.support.constraint.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        >
+
+        <CheckBox
+            android:id="@+id/cb_answer"
+            android:layout_width="32dp"
+            android:layout_height="wrap_content"
+            android:background="@color/colorWhite"
+            android:checked="false"
+            android:clickable="false"
+            android:paddingTop="4dp"
+            android:layout_gravity="center"
+            android:theme="@style/MyCheckBox2" />
+        <TextView
+            android:id="@+id/tv_answer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/colorWhite"
+            android:layout_weight="1"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            android:textColor="@color/colorGray"
+            android:textStyle="normal"
+            android:layout_gravity="center_vertical"
+            android:textSize="14sp"
+            android:text="Life cycle is Life Cycle yes it is."/>
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#efefef"
+        />
+
+</LinearLayout>

@@ -10,6 +10,7 @@ public class Answer {
     String answer="";
 
     public Answer() {
+
     }
 
     public Answer(String answer) {
@@ -17,6 +18,7 @@ public class Answer {
     }
 
     public Answer(boolean isChecked, String answer) {
+
         this.isChecked = isChecked;
         this.answer = answer;
     }

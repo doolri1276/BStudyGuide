@@ -50,74 +50,79 @@ public class DBHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public int insertSet(String title, String info, String folder, String favor, String date, String recent, int icon, int iconColor, int percentage, ArrayList<Question> questions){
+    public void insertSet(){
         SQLiteDatabase db=this.getWritableDatabase();
 
-        Cursor cursor = db.rawQuery("SELECT name FROM sqlite_master WHERE type='table' AND name ='"+title+"'" , null);
+        Cursor cursor = db.rawQuery("SELECT name FROM sqlite_master WHERE type='table' AND name ='"+G.newSet.title+"'" , null);
         cursor.moveToFirst();
 
         if(cursor.getCount()>0){
-            return -1;
+            return;
         }
 
         //SQLiteDatabase wdb=this.getWritableDatabase();
         ContentValues contentValues=new ContentValues();
 
-        contentValues.put(SG_TITLE,title);
-        contentValues.put(SG_INFO,info);
-        contentValues.put(SG_FOLDER,folder);
-        contentValues.put(SG_FAVOR,favor);
-        contentValues.put(SG_DATE,date);
-        contentValues.put(SG_RECENT,recent);
-        contentValues.put(SG_ICON,icon);
-        contentValues.put(SG_ICONCOLOR,iconColor);
-        contentValues.put("percentage",percentage);
+        contentValues.put(SG_TITLE,G.newSet.title);
+        contentValues.put(SG_INFO,G.newSet.info);
+        contentValues.put(SG_FOLDER,G.newSet.folder);
+        contentValues.put(SG_FAVOR,G.newSet.favor);
+        contentValues.put(SG_DATE,G.newSet.date);
+        contentValues.put(SG_RECENT,G.newSet.recent);
+        contentValues.put(SG_ICON,G.newSet.icon);
+        contentValues.put(SG_ICONCOLOR,G.newSet.iconColor);
+        contentValues.put("percentage",G.newSet.percentage);
         db.insert(SG_TABLE,null,contentValues);
 
-//        Cursor res=wdb.rawQuery("select id from studyguide where title='"+title+"'",null);
-//        int idid=res.getInt(0);
 
-        String sql="select id from studyguide where title = '"+title+"';";
+        String sql="select id from studyguide where title = '"+G.newSet.title+"';";
         Cursor res= db.rawQuery(sql,null);
-        int id=-1;
+
         if(res.moveToFirst()){
-            id=res.getInt(0);
-            Log.i("MyTag","DBHelper : id만들어졌음 그 id는 ="+id);
+            G.newSet.id=res.getInt(0);
+            Log.i("MyTag","DBHelper : id만들어졌음 그 id는 ="+G.newSet.id);
 
         }
 
-        db.execSQL("create table set"+id+" (id integer primary key autoincrement, " +
-                "favor text, question text, answerType integer, answers text, correctAnswers " +
-                "text, times integer, correctTimes integer, percentage integer)");
 
-        for(int i=0;i<questions.size();i++){
-            Question question=questions.get(i);
+
+        db.execSQL("create table set"+G.newSet.id+" (id integer primary key autoincrement, " +
+                "favor text, question text, answerType integer, answers text, correctAnswers text, " +
+                "times integer, correctTimes integer, percentage integer)");
+
+        for(int i=0;i<G.newQuestions.size();i++){
+            Question question=G.newQuestions.get(i);
             contentValues=new ContentValues();
             contentValues.put("favor",question.favor);
             contentValues.put("question", question.question);
             contentValues.put("answerType",question.answerType);
             String s="";
             for(int j=0;j<question.answers.size();j++){
-                s+=question.answers.get(j).answer+":::";
+                s+=question.answers.get(j).answer+":::"+question.answers.get(j).isChecked+":::";
+
             }
+            Log.i("MyTag","더해지는걸 봐야게썽..."+s);
             contentValues.put("answers",s);
 
             String ca="";
             for(int j=0;j<question.answers.size();j++){
-                Answer answer=question.answers.get(i);
-                if(answer.isChecked) ca+=(i+1)+", ";
+                Answer answer=question.answers.get(j);
+                if(answer.isChecked) ca+=(j+1)+", ";
+
+                Log.i("MyTag","ca확인하고있다 : "+ca);
             }
 
-            contentValues.put("correctAnswers",question.correctAnswers);
+            contentValues.put("correctAnswers",ca);
             contentValues.put("times",question.times);
             contentValues.put("correctTimes",question.correctTimes);
             contentValues.put("percentage",question.percentage);
-            db.insert("set"+id,null,contentValues);
+            db.insert("set"+G.newSet.id,null,contentValues);
 
         }
 
+        G.set=G.newSet;
 
-        return id;
+        return;
     }
 
     public int numberOfSets(){
@@ -126,7 +131,7 @@ public class DBHelper extends SQLiteOpenHelper {
         return numSets;
     }
 
-    public ArrayList<Set> getAllSets(){
+    public void getAllSets(){
         ArrayList<Set> sets=new ArrayList<>();
         SQLiteDatabase db=this.getReadableDatabase();
         Cursor res=db.rawQuery("select * from studyguide",null);
@@ -164,7 +169,8 @@ public class DBHelper extends SQLiteOpenHelper {
         }
         Log.i("MyTag","set의 갯수 : "+sets.size());
         Collections.reverse(sets);
-        return sets;
+        if(G.sets!=null)G.sets.clear();
+        G.sets=sets;
 
     }
 
@@ -202,65 +208,82 @@ public class DBHelper extends SQLiteOpenHelper {
         return set;
     }
 
-    public ArrayList<Question> getQuestions(int setId){
+    public void getQuestions(){
         ArrayList<Question> questions=new ArrayList<>();
 
         SQLiteDatabase db=this.getReadableDatabase();
-        Cursor res=db.rawQuery("select * from set"+setId+";",null);
+        Cursor res=db.rawQuery("select * from set"+G.set.id+";",null);
         res.moveToFirst();
 
         int id;
         String favor;
         String question;
         int answerType=0;
-        ArrayList<Answer>answers=new ArrayList<>();
+        ArrayList<Answer>answers;
         String correctAnswers;
         int times;
         int correctTimes;
         int percentage;
 
+
+
         while(res.isAfterLast()==false){
+            answers=new ArrayList<>();
+
 
             id=res.getInt(res.getColumnIndex(SG_ID));
             favor=res.getString(res.getColumnIndex("favor"));
             question=res.getString(res.getColumnIndex("question"));
             answerType=res.getInt(res.getColumnIndex("answerType"));
             String answersstr=res.getString(res.getColumnIndex("answers"));
+            Log.i("MyTag","answers뽑아봅니다 : "+answersstr);
             String[] answerStrings=answersstr.split(":::");
 
-            for(int i=0;i<answerStrings.length;i++){
-                answers.add(new Answer(answerStrings[i]));
+            for(int i=0;i<answerStrings.length;i=i+2){
+                answers.add(new Answer(Boolean.parseBoolean(answerStrings[i+1]),answerStrings[i]));
+
+                Log.i("MyTag", "문제 : "+answers.get(answers.size()-1).answer+" 답여부 "+answers.get(answers.size()-1).isChecked);
             }
             correctAnswers=res.getString(res.getColumnIndex("correctAnswers"));
+            Log.i("MyTag","correctAAAAA뽑아봅니다 : "+correctAnswers);
             String[] correctA=correctAnswers.split(", ");
-            for(int i=0;i<correctA.length;i++){
-                if(correctA[i].length()==0)continue;
-                answers.get((Integer.parseInt(correctA[i]))-1).isChecked=true;
-            }
+//            for(int i=0;i<correctA.length;i++){
+//                if(correctA[i].length()==0)continue;
+//                answers.get((Integer.parseInt(correctA[i]))-1).isChecked=true;
+//            }
             times=res.getInt(res.getColumnIndex("times"));
             correctTimes=res.getInt(res.getColumnIndex("correctTimes"));
             percentage=res.getInt(res.getColumnIndex("percentage"));
 
             Question questionItem=new Question(id,favor,question,answerType,answers,correctAnswers,times,correctTimes,percentage);
+            questionItem.answers=answers;
+
             questions.add(questionItem);
 
             res.moveToNext();
         }
 
-
-
-
-        return questions;
+        G.questions=questions;
     }
 
-    public void updateFavor(int id,boolean favor){
-        Log.i("MyTag",favor+"");
+    public void updateFavor(int position,boolean isChecked){
 
-        String sql="update studyguide set favor = '"+favor+"' where id = "+id+";";
+        Set set=G.sets.get(position);
+
+        set.favor=isChecked+"";
+
+        String sql="update studyguide set favor = '"+set.favor+"' where id = "+set.id+";";
         SQLiteDatabase db=getWritableDatabase();
         db.execSQL(sql);
+    }
 
+    public void updateQuestionFavor(int position, boolean isChecked){
+        Question que=G.questions.get(position);
+        que.favor=isChecked+"";
 
+        String sql="update set"+G.set.id+" set favor = '"+que.favor+"' where id = "+que.id+";";
+        SQLiteDatabase db=getWritableDatabase();
+        db.execSQL(sql);
 
     }
 

@@ -54,5 +54,17 @@
 
     </style>
 
+    <style name="answer_correct">
+        <item name="android:textColor">@color/colorDeepGray</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="answer_wrong">
+        <item name="android:textColor">@color/colorGray</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
 
 </resources>

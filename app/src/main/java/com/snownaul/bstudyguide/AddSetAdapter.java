@@ -23,12 +23,12 @@ import java.util.ArrayList;
 public class AddSetAdapter extends RecyclerView.Adapter{
 
     Context context;
-    ArrayList<Question> questions;
+
     AnswersAdapter answersAdapter;
 
-    public AddSetAdapter(Context context, ArrayList<Question> questions) {
+    public AddSetAdapter(Context context) {
         this.context = context;
-        this.questions = questions;
+
     }
 
     @Override
@@ -43,8 +43,11 @@ public class AddSetAdapter extends RecyclerView.Adapter{
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
 
+
+        Log.i("MyTag","재사용되었다.");
+
         VH vh=(VH)holder;
-        Question question =questions.get(position);
+        Question question =G.newQuestions.get(position);
 
         vh.tvQuestionNum.setText(position+1+"");
         vh.etQuestion.setText(question.question);
@@ -59,7 +62,7 @@ public class AddSetAdapter extends RecyclerView.Adapter{
 
     @Override
     public int getItemCount() {
-        return questions.size();
+        return G.newQuestions.size();
     }
 
     class VH extends RecyclerView.ViewHolder{
@@ -83,10 +86,10 @@ public class AddSetAdapter extends RecyclerView.Adapter{
             ivClear.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    questions.remove(questions.get(getLayoutPosition()));
+                    G.newQuestions.remove(G.newQuestions.get(getLayoutPosition()));
                     AddSetAdapter.this.notifyItemRemoved(getLayoutPosition());
                     AddSetAdapter.this.notifyItemRangeChanged(getLayoutPosition(),
-                            questions.size()-getLayoutPosition());
+                            G.newQuestions.size()-getLayoutPosition());
 
                 }
             });
@@ -94,7 +97,7 @@ public class AddSetAdapter extends RecyclerView.Adapter{
             ivAddAnswer.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Question question =questions.get(getLayoutPosition());
+                    Question question =G.newQuestions.get(getLayoutPosition());
                     question.answers.add(new Answer());
                     answersAdapter.notifyItemInserted(question.answers.size()-1);
                     recyclerView.scrollToPosition(question.answers.size()-1);
@@ -114,7 +117,7 @@ public class AddSetAdapter extends RecyclerView.Adapter{
 
                 @Override
                 public void afterTextChanged(Editable s) {
-                    Question question=questions.get(getLayoutPosition());
+                    Question question=G.newQuestions.get(getLayoutPosition());
                     question.question=s.toString();
 
                     Log.i("MyTag",getLayoutPosition()+"번째 문제 : "+question.question);
